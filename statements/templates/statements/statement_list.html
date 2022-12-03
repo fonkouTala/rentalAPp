@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Statement{% endblock title %}
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'statement-create' %}"><i
+    class="fas fa-plus"></i> New statement</a>
+<a class="btn btn-primary" href="#"><i
+    class="fas fa-upload"></i> Upload statement</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+  <div class="table-responsive">
+    <table id="studenttable" class="table table-bordered table-hover" data-page-length='100'>
+      <thead class="thead-light">
+        <tr>
+          <th>S/N</th>
+          <th>Fullname</th>
+          <th>End date</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for statement in object_list %}
+          <tr class='clickable-row' data-href="{% url 'statement-detail' statement.id %}">
+            <td>{{ forloop.counter}}</td>
+            <td>{{ statement.name}}</td>
+            <td>{{ statement.end_date}}</td>
+            <td>{{ statement.description}}</td>
+            <td>{{ statement.balance}}</td>
+            <td>{{ statement.final_balance}}</td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+  $('#studenttable').DataTable({
+  });
+</script>
+
+{% endblock morejs %}
+

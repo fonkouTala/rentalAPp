@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}register{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'register-create' %}"><i
+    class="fas fa-plus"></i> New record</a>
+<a class="btn btn-primary" href="#"><i
+    class="fas fa-upload"></i> Upload record</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+  <div class="table-responsive">
+    <table id="studenttable" class="table table-bordered table-hover" data-page-length='100'>
+      <thead class="thead-light">
+        <tr>
+          <th>S/N</th>
+          <th>Fullname</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Start date</th>
+          <th>Rent typ</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for register in object_list %}
+          <tr class='clickable-row' data-href="{% url 'register-detail' register.id %}">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ register.full_name }}</td>
+            <td>{{ register.phone }}</td>
+            <td>{{ register.email }}</td>
+            <td>{{ register.date }}</td>
+            <td>{{ register.get_rent_type_display }}</td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+  $('#studenttable').DataTable({
+  });
+</script>
+
+{% endblock morejs %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Issues{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'issue-create' %}"><i
+    class="fas fa-plus"></i> New issue</a>
+<a class="btn btn-primary" href="#"><i
+    class="fas fa-upload"></i> Upload issue</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+    {% if object_list %}
+        {% for object in object_list%}
+            <ul>
+                <li><a href="{% url 'issue-detail' object.id %}">{{ object.date }} - {{ object.description }}</a></li>
+            </ul>
+        {% endfor %}
+
+    {% else %}
+        <h3>There is no issue here, create one or leave it empty.</h3>
+    {% endif %}
+{% endblock %}
