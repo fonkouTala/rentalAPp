@@ -1,4 +1,5 @@
-"#rentalapp"    -----------   python -django- reportlab -javascript -css- bootstrap- jQuerry...
+"#rentalapp"    -----------   
+python -django- reportlab -javascript -css- bootstrap- jQuerry...
 
 * pip install virtualenv
 * virtualenv env
@@ -9,4 +10,4 @@
 * python manage.py runserver
 
 username: light
-password: light12345
+password: 
